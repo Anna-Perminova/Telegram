@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Telegram</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_default_username">Anna Perminova</string>
+    <string name="settings_default_status">online</string>
+    <string name="settings_text_account">Account</string>
+    <string name="settings_default_number">+375291867238</string>
+    <string name="settings_label_phone_number">Click,if you want change phone number</string>
+    <string name="settings_default_login">annaperminova</string>
+    <string name="settings_label_login">User name</string>
+    <string name="settings_default_bio">About yourself</string>
+    <string name="settings_label_bio">Text about yourself</string>
+    <string name="settings_menu_change_name">Change name</string>
+    <string name="settings_menu_exit">Exit</string>
+    <string name="cd_register_image">register_image</string>
+    <string name="register_text_enter_code">Enter code</string>
+    <string name="register_text_we_sent"> We sent SMS with code on your phone</string>
+    <string name="register_hint_default_code">- - - - - -</string>
+    <string name="register_title_your_phone">Your phone</string>
+    <string name="register_toast_enter_phone">Enter number phone</string>
+    <string name="register_phone_hint">-------------</string>
+    <string name="settings_hint_input_name">Name</string>
+    <string name="settings_hint_input_surname">Surname</string>
+    <string name="settings_toast_name_is_empty"> Name cannot be empty</string>
+    <string name="toast_data_update">Data update</string>
+    <string name="settings_hint_input_username">username</string>
+    <string name="settings_input_bio">bio</string>
+    <string name="clear_chat">Clear chat</string>
+    <string name="delete_chat">Delete chat</string>
+    <string name="create_group">Create group</string>
+    <plurals name="count_members">
+        <item quantity="one">%d person</item>
+        <item quantity="other">%d persons</item>
+    </plurals>
+</resources>

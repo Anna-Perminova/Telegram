@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/backfround"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/smartphone" />
+
+    <TextView
+        android:text="Verify your number..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textStyle="bold|normal"
+        android:layout_margin="@dimen/app_small_margin"
+        android:textColor="@color/md_deep_purple_400"
+        android:textSize="20sp"
+         />
+    <TextView
+        android:text="Enter code to Verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textStyle="normal"
+        android:layout_margin="@dimen/app_small_margin"
+        android:textColor="@color/browser_actions_title_color"
+        android:textSize="13sp"
+        />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:background="@color/accent"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                style="@style/editText"
+                android:layout_width="wrap_content"
+                android:id="@+id/register_input_code"
+                android:autofillHints=""
+                android:maxLength="6"
+                android:gravity="center"
+                android:hint="@string/register_hint_default_code"
+                />
+            <Button
+                android:id="@+id/register_enter_phone_number_btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Continue"
+                android:textStyle="bold|normal"
+                android:textSize="17sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/md_deep_purple_400"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>
