@@ -3,18 +3,22 @@ package com.example.telegram.packages.ui.screens.register
 import androidx.lifecycle.MutableLiveData
 import com.example.telegram.database.*
 import com.example.telegram.utilits.AppValueEventListener
-import com.example.telegram.utilits.restartActivity
-import com.example.telegram.utilits.showToast
 import com.google.firebase.auth.PhoneAuthProvider
 
 interface EnterCodeRepository {
-    fun enterCode(code:String , phoneNumber: String,  id: String):MutableLiveData<String>
+    fun enterCode(code: String, phoneNumber: String, id: String)
+
+    fun isLoggedIn(): MutableLiveData<Boolean>
 
 }
+
 /* Функция проверяет код, если все нормально, производит создания информации о пользователе в базе данных.*/
-class EnterCodeRepositoryImpl():EnterCodeRepository{
-   private var result=MutableLiveData<String>()
-    override fun enterCode(code:String , phoneNumber: String,  id: String): MutableLiveData<String> {
+class EnterCodeRepositoryImpl() : EnterCodeRepository {
+
+    private val result = MutableLiveData<String>()
+    private val isLoggedIn = MutableLiveData<Boolean>()
+
+    override fun enterCode(code: String, phoneNumber: String, id: String) {
         val credential = PhoneAuthProvider.getCredential(id, code)
 
         AUTH.signInWithCredential(credential).addOnCompleteListener { task ->
@@ -34,21 +38,27 @@ class EnterCodeRepositoryImpl():EnterCodeRepository{
                         REF_DATABASE_ROOT.child(
                             NODE_PHONES
                         ).child(phoneNumber).setValue(uid)
-                            .addOnFailureListener { result.value="${it.message}"}
+                            .addOnFailureListener { result.value = "${it.message}" }
                             .addOnSuccessListener {
                                 REF_DATABASE_ROOT.child(
                                     NODE_USERS
                                 ).child(uid).updateChildren(dateMap)
                                     .addOnSuccessListener {
-                                        showToast("Добро пожаловать")
-                                        restartActivity()
+                                        isLoggedIn.value = true
                                     }
-                                    .addOnFailureListener { result.value="${it.message}" }
+                                    .addOnFailureListener {
+                                        isLoggedIn.value = false
+                                    }
                             }
                     })
 
 
-            } else result.value= "${task.exception?.message}"
+            } else result.value = "${task.exception?.message}"
         }
 
-   return result }}
+    }
+
+    override fun isLoggedIn(): MutableLiveData<Boolean> {
+        return isLoggedIn
+    }
+}

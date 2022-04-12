@@ -3,6 +3,8 @@ package com.example.telegram.ui.screens.register
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.example.telegram.database.AUTH
 import com.example.telegram.utilits.*
 import com.example.tg.R
@@ -71,6 +73,7 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
             authUser()
         }
     }
+
     private fun authUser() {
         /* Инициализация */
         mPhoneNumber = binding.registerInputPhoneNumber.text.toString()
@@ -81,6 +84,23 @@ class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) 
                 .setPhoneNumber(mPhoneNumber)
                 .setTimeout(60L, TimeUnit.SECONDS)
                 .setCallbacks(mCallback)
-                .build())
+                .build()
+        )
     }
+}
+
+enum class AuthState { VERIFICATION_COMPLETED, VERIFICATION_FAILED, ON_CODE_SENT }
+
+class AuthViewModel(
+    private val repo: AuthRepository
+) : ViewModel() {
+    val authState = repo.authState
+    fun verifyPhoneNumber(phoneNumber: String) {
+        repo.verifyPhoneNumber(phoneNumber)
+    }
+}
+
+interface AuthRepository {
+    val authState: LiveData<AuthState>
+    fun verifyPhoneNumber(phoneNumber: String)
 }
